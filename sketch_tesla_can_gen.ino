@@ -47,13 +47,23 @@ void loop() {
   CAN.sendMsgBuf(0x105, 0, 8, RPM);
   delay(50);
 
+  //send speed message
+  unsigned char speed1[8] = {0x84, 0x19, 0x40, 0x31, 0x00, 0xF2, 0x20, 0x78};
+  unsigned char speed2[8] = {0x84, 0x28, 0xC0, 0x31, 0x5A, 0x52, 0x2D, 0xCE};
+
+  if (random(2) == 0)  CAN.sendMsgBuf(0x256, 0, 8, speed1);
+    else  CAN.sendMsgBuf(0x256, 0, 8, speed2);
+
+  
+  delay(50);
+
   
   //and generate the load of random messages
   num = random(10000); //now we test with 2 byte data
   unsigned char stmp[8] = {'H', 'e', 00 , 01 , 02, ' ', 's', 'e'};
   // send generated message
   CAN.sendMsgBuf(num, 0, 8, stmp);
-   delay(50);
+  delay(50);
   index = random(8);
   stmp[index]++;
   if (stmp[index] > 255) stmp[index] = 0;
