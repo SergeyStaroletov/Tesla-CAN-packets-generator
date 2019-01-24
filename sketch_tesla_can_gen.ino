@@ -83,6 +83,14 @@ void loop() {
   CAN.sendMsgBuf(0x3D2, 0, 8, bles);
     delay(50);
 
+  //gear 
+   unsigned char gear[6] = {0x5A, 0x44, 0x75, 0x44, 0x8E, 0xFC};
+  CAN.sendMsgBuf(0x116, 0, 6, gear);
+    delay(50);
+
+
+    
+
   //and generate the load of random messages
   num = random(10000); //now we test with 2 byte data
   unsigned char stmp[8] = {'H', 'e', 00 , 01 , 02, ' ', 's', 'e'};
