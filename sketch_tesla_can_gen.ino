@@ -53,10 +53,21 @@ void loop() {
 
   if (random(2) == 0)  CAN.sendMsgBuf(0x256, 0, 8, speed1);
     else  CAN.sendMsgBuf(0x256, 0, 8, speed2);
-
-  
   delay(50);
 
+  //inventor temp state
+  unsigned char inv[8] = {50, 50, 50, 50, 50, 50, 50, 50};
+
+  CAN.sendMsgBuf(0x306, 0, 8, inv);
+
+  //battery temp state
+  unsigned char bms1[8] = {0x66, 0x97, 0xF8, 0xA6, 0xF2, 0x4D, 0x28, 0x01};
+  unsigned char bms2[8] = {0x5C, 0x99, 0x9F, 0x83, 0x3C, 0x07};
+
+
+ if (random(2) == 0)  CAN.sendMsgBuf(0x102, 0, 8, bms1);
+    else  CAN.sendMsgBuf(0x102, 0, 6, bms2);
+  delay(50);
   
   //and generate the load of random messages
   num = random(10000); //now we test with 2 byte data
