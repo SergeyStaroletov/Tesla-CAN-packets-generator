@@ -39,7 +39,7 @@ START_INIT:
 
 void loop() {
   unsigned char len = 0;
-  unsigned char buf[8];
+  //unsigned char buf[8];
 
 
   //send RPM message
@@ -71,8 +71,18 @@ void loop() {
   //battery state of change
    unsigned char bsc[3] = {0x82, 0xDF, 0x0D};
    CAN.sendMsgBuf(0x302, 0, 3, bsc);
+   delay(50);
 
-  
+   //estimated energy
+   unsigned char ee[8] = {0xFC, 0x9A, 0xEA, 0x69, 0xA9, 0x00, 0xA0, 0x00};
+   CAN.sendMsgBuf(0x382, 0, 3, ee);
+   delay(50);
+
+  //Battery Lifetime Energy Stats
+  unsigned char bles[8] = {0x25, 0xAE, 0x86, 0x00 , 0x07, 0xDC, 0x8F, 0x00};
+  CAN.sendMsgBuf(0x3D2, 0, 8, bles);
+    delay(50);
+
   //and generate the load of random messages
   num = random(10000); //now we test with 2 byte data
   unsigned char stmp[8] = {'H', 'e', 00 , 01 , 02, ' ', 's', 'e'};
