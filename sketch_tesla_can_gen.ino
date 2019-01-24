@@ -88,6 +88,10 @@ void loop() {
   CAN.sendMsgBuf(0x116, 0, 6, gear);
     delay(50);
 
+  //odo 
+   unsigned char odo[4] = {0x3C, 0x27, 0x2C, 0x01};
+  CAN.sendMsgBuf(0x562, 0, 4, odo);
+    delay(50);
 
     
 
