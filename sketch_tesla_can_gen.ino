@@ -43,8 +43,8 @@ void loop() {
 
 
   //send RPM message
-  unsigned char RPM[8] = {0x31, 0xFF,0x2D,0x7F,0xA3,0x14,0x0E,0xA8};
-  CAN.sendMsgBuf(0x105, 0, 8, RPM);
+  unsigned char RPM[8] = {0x31, 0xFF, 0x2D, 0x7F, 0xA3, 0x14, 0x0E, 0xA8};
+  CAN.sendMsgBuf(0x106, 0, 8, RPM);
   delay(50);
 
   //send speed message
@@ -93,6 +93,9 @@ void loop() {
   CAN.sendMsgBuf(0x562, 0, 4, odo);
     delay(50);
 
+  //regen
+
+  //creep
     
 
   //and generate the load of random messages
